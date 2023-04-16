@@ -1,0 +1,9 @@
+pipeline {
+ agent php {
+ }
+ stages {
+  stage("") {
+   steps {
+    sh 'cd php && php-mysql'  
+   }
+   
