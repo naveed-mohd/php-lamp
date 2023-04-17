@@ -1,7 +1,7 @@
 <?php
 
 function Createdb(){
-    $servername = "localhost";
+    $servername = "php-mysql-server.mysql.database.azure.com";
     $username = "phpuser";
     $password = "naveed_44";
     $dbname = "bookstore";
