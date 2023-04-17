@@ -11,7 +11,7 @@ pipeline {
  stages {
   stage("Building the DockerFile") {
    steps {
-    sh'cd php && docker build -t naveed44/php .'  
+    sh'docker build -t naveed44/php .'  
    }
  }
   
