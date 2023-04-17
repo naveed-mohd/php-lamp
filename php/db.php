@@ -7,7 +7,7 @@ function Createdb(){
     $dbname = "bookstore";
 
     // create connection
-    $con = mysqli_connect($servername, $username, $password);
+    $con = mysqli_real_connect($servername, $username, $password);
 
     // Check Connection
     if (!$con){
