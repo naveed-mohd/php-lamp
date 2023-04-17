@@ -1,9 +1,39 @@
 pipeline {
  agent php {
  }
+ 
+ environment{
+  DOCKER_CREDENTIALS= credentials('naveed44')
+  DOCKER_USER="naveed44"
+}
+ 
  stages {
-  stage("") {
+  stage("Building the DockerFile") {
    steps {
-    sh 'cd php && php-mysql'  
+    sh'cd php && docker build -t naveed44/php .'  
    }
-   
+}
+  
+   stage("Docker Login"){
+    steps{
+     sh'echo $DOCKER_CREDENTIALS | docker login -u $DOCKER_USER --password-stdin"'
+   }
+}
+  
+   stage("Pushing docker image to registry"){
+    steps{
+     sh'docker push naveed44/php'
+    }
+}
+    stage("Removing old docker image"){
+     steps{
+      sh 'docker image rmi -f naveed44/php'
+      }
+}      
+
+    stage("Running php container "){
+     steps{
+      sh 'docker container run -dt --name php-lamp -p 80:80 naveed44/php'
+      }
+}      
+      
