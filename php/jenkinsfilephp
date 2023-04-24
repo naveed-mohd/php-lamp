@@ -1,0 +1,20 @@
+pipeline {
+ agent {
+  label'php'
+ }
+
+   
+  stages {
+   stage("Remove old code from document dir"){
+    steps{   
+     sh'rm -rf /var/www/html/'
+	 }
+  } 
+   stage("Cloning the code from scm") {
+    steps {
+     sh'git clone -b dev https://github.com/naveed-mohd/php-lamp.git /var/www/html/'  
+   }
+  } 
+ }
+}      
+
